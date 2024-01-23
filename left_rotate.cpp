@@ -1,6 +1,19 @@
 #include<iostream>
 using namespace std;
 
+// Left rotate an array by n times
+void arrRotateLeft(int arr[], int arrLength, int n)
+{
+    int temp[n];
+    // left shift the array
+    for (int i = 0; i < arrLength; i++)
+    {
+        if (i < n)
+            temp[i] = arr[i];
+        arr[i] = (i >= arrLength - n) ? temp[i - arrLength + n] : arr[i + n];
+    }
+}
+
 int main()
 {
     int arr[5] = {4, 8, 12, 9, 1};
@@ -15,24 +28,13 @@ int main()
 
     if (maxRotate > arrLength)
     {
-        cout << "Shifting value exceeded the array length!";
+        cout << "Rotating value exceeded the array length!";
         return 1;
     }
 
-    int temp[arrLength];
-    // fill the temp array
-    for (int i = 0; i < maxRotate; i++)
-        temp[i] = arr[i];
+    arrRotateLeft(arr, arrLength, maxRotate);
 
-    // left shift the array
-    for (int i = 0; i < arrLength; i++)
-    {
-        if (i < maxRotate)
-            temp[i] = arr[i];
-        arr[i] = (i >= arrLength - maxRotate) ? temp[arrLength - i + maxRotate] : arr[i + maxRotate];
-    }
-
-    cout << endl << "Left shifted arr = ";
+    cout << endl << "Left rotated arr = ";
     for (int i = 0; i < arrLength; i++)
         cout << arr[i] << ", ";
     cout << endl;

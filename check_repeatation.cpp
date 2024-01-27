@@ -3,38 +3,30 @@
 #include <vector>
 using namespace std;
 
-bool check_repetation(const vector<int>& arr) {
-    unordered_map<int, int> elementRepetitions;
-    for (const auto& i : arr) {
-        if (elementRepetitions.count(i)) {
-            elementRepetitions[i]++;
-        } else {
-            elementRepetitions[i] = 1;
-        }
-    }
+bool check_repetation(const unordered_map<int, int>& elementRepetitions) {
     // store all the values in another unordered map
     unordered_map<int, int> repetitions;
     for (const auto& i : elementRepetitions) {
-        if (i.second == 1) continue;
-        if (repetitions.count(i.second)) {
+        // if repetation of any element is greater than 1 then return true
+        if (i.second > 1 && ++repetitions[i.second] > 1) {
             return true;
-        } else {
-            repetitions[i.second] = 1;
         }
     }
     return false;
 }
 
 int main() {
-    vector<int> arr;
     int size;
     cout << "Enter array size: ";
     cin >> size;
+
+    vector<int> arr(size);
+    unordered_map<int, int> elementRepetation;  // store repetation of each element as key value pair (key = element, value = repetation)
+
     cout << "Enter array elements: " << endl;
     for (int i = 0; i < size; i++) {
-        int element;
-        cin >> element;
-        arr.push_back(element);
+        cin >> arr[i];                    // input array
+        elementRepetation[arr[i]]++;    // increment repetation of element
     }
 
     // print array
@@ -45,7 +37,7 @@ int main() {
     cout << endl << endl;
 
     // check repetation
-    if (check_repetation(arr)) {
+    if (check_repetation(elementRepetation)) {
         cout << "True" << endl;
     } else {
         cout << "False" << endl;

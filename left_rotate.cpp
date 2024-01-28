@@ -2,41 +2,52 @@
 using namespace std;
 
 // Left rotate an array by n times
-void arrRotateLeft(int arr[], int arrLength, int n)
+void arrRotateLeft(int arr[], int arrSize, int n)
 {
     int temp[n];
     // left shift the array
-    for (int i = 0; i < arrLength; i++)
+    for (int i = 0; i < arrSize; i++)
     {
         if (i < n)
             temp[i] = arr[i];
-        arr[i] = (i >= arrLength - n) ? temp[i - arrLength + n] : arr[i + n];
+        arr[i] = (i >= arrSize - n) ? temp[i - arrSize + n] : arr[i + n];
     }
+}
+
+// print array
+void printArray(int arr[], int arrSize)
+{
+    for (int i = 0; i < arrSize; i++)
+        cout << arr[i] << (i == arrSize - 1 ? "\n" : ", ");
 }
 
 int main()
 {
-    int arr[5] = {4, 8, 12, 9, 1};
-    int arrLength = sizeof(arr) / sizeof(arr[0]);
+    int arrSize;
+    cout << "Enter array size: ";
+    cin >> arrSize;
+
+    int arr[arrSize];
+    cout << "Enter array elements: " << endl;
+    for (int i = 0; i < arrSize; i++)
+        cin >> arr[i];
+
     cout << "Current arr = ";
-    for (int i = 0; i < arrLength; i++)
-        cout << arr[i] << ", ";
+    printArray(arr, arrSize);
 
     int maxRotate = 1;
     cout << endl << "How many times you want to Left rotate the array? ";
     cin >> maxRotate;
 
-    if (maxRotate > arrLength)
+    if (maxRotate > arrSize)
     {
         cout << "Rotating value exceeded the array length!";
         return 1;
     }
 
-    arrRotateLeft(arr, arrLength, maxRotate);
+    arrRotateLeft(arr, arrSize, maxRotate);
 
     cout << endl << "Left rotated arr = ";
-    for (int i = 0; i < arrLength; i++)
-        cout << arr[i] << ", ";
-    cout << endl;
+    printArray(arr, arrSize);
     return 0;
 }

@@ -1,47 +1,76 @@
 #include <iostream>
-#include <unordered_map>
-#include <vector>
 using namespace std;
 
-bool check_repetation(const unordered_map<int, int>& elementRepetitions) {
-    // store all the values in another unordered map
-    unordered_map<int, int> repetitions;
-    for (const auto& i : elementRepetitions) {
-        // if repetation of any element is greater than 1 then return true
-        if (i.second > 1 && ++repetitions[i.second] > 1) {
-            return true;
+struct Element
+{
+    int value;
+    int repetitions;
+};
+
+bool check_repetation(const int arr[], int size)
+{
+    Element elements[size];
+    for (int i = 0; i < size; i++)
+    {
+        bool found = false;
+        for (int j = 0; j < size; j++)
+        {
+            if (arr[i] == elements[j].value)
+            {
+                elements[j].repetitions++;
+                found = true;
+                break;
+            }
+        }
+        if (!found)
+        {
+            elements[i].value = arr[i];
+            elements[i].repetitions = 1;
+        }
+    }
+
+    for (int i = 0; i < size; i++)
+    {
+        if (elements[i].repetitions == 1)
+            continue;
+        for (int j = i + 1; j < size; j++)
+        {
+            if (elements[i].repetitions == elements[j].repetitions)
+                return true;
         }
     }
     return false;
 }
 
-int main() {
+int main()
+{
     int size;
     cout << "Enter array size: ";
     cin >> size;
 
-    vector<int> arr(size);
-    unordered_map<int, int> elementRepetation;  // store repetation of each element as key value pair (key = element, value = repetation)
+    int arr[size];
 
-    cout << "Enter array elements: " << endl;
-    for (int i = 0; i < size; i++) {
-        cin >> arr[i];                    // input array
-        elementRepetation[arr[i]]++;    // increment repetation of element
+    cout << "Enter array elements: \n";
+    for (int i = 0; i < size; i++)
+    {
+        cin >> arr[i];
     }
 
-    // print array
-    cout << endl << "Array: ";
-    for (int i : arr) {
-        cout << i << " ";
+    cout << "\nArray: ";
+    for (int i = 0; i < size; i++)
+    {
+        cout << arr[i] << " ";
     }
-    cout << endl << endl;
+    cout << "\n\n";
 
-    // check repetation
-    if (check_repetation(elementRepetation)) {
-        cout << "True" << endl;
-    } else {
-        cout << "False" << endl;
+    if (check_repetation(arr, size))
+    {
+        cout << "True\n";
     }
-    cout << endl;
+    else
+    {
+        cout << "False\n";
+    }
+
     return 0;
 }

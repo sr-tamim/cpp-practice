@@ -6,7 +6,7 @@
 using namespace std;
 
 double areaOfCircle(double radius) {
-    return 3.14 * radius * radius;
+    return 3.1416 * radius * radius;
 }
 
 int main() {

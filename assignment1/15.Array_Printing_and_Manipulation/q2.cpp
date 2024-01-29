@@ -7,7 +7,12 @@ using namespace std;
 
 int main() {
     char arr[10] = "Hello";
-    arr[0] = 'h';
-    cout << arr << endl;
+    // print the array
+    cout << "Original array: " << arr << endl;
+
+    // change the first character
+    arr[0] = 'G';
+    // print the modified array
+    cout << "Modified array: " << arr << endl;
     return 0;
 }

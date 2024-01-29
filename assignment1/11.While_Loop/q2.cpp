@@ -9,14 +9,14 @@ int main() {
     int a, b, gcd;
     cout << "Enter two numbers: ";
     cin >> a >> b;
-    while (a != b) {
-        if (a > b) {
-            a -= b;
-        } else {
-            b -= a;
-        }
+
+    int x = a, y = b;
+    while (x % y != 0) {
+        int temp = x;
+        x = y;
+        y = temp % y;
     }
-    gcd = a;
+    gcd = y;
     cout << "GCD of " << a << " and " << b << " is " << gcd << endl;
     return 0;
 }

@@ -6,7 +6,8 @@
 
 using namespace std;
 
-int main() {
+int main()
+{
     double weight, distance, cost;
 
     cout << "Enter weight: ";
@@ -15,12 +16,20 @@ int main() {
     cout << "Enter distance: ";
     cin >> distance;
 
-    if (weight < 5) {
+    if (weight < 5)
+    {
         cost = 1.10 * distance;
-    } else if (weight >= 5 && weight < 20) {
-        cost = 2.20 * distance;
-    } else {
-        cost = 3.70 * distance;
+    }
+    else if (weight >= 5)
+    {
+        if (weight < 20)
+        {
+            cost = 2.20 * distance;
+        }
+        else
+        {
+            cost = 3.70 * distance;
+        }
     }
 
     cout << "Cost: " << cost << endl;

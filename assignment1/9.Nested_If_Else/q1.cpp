@@ -6,7 +6,8 @@
 
 using namespace std;
 
-int main() {
+int main()
+{
     int age;
     double height;
 
@@ -16,9 +17,19 @@ int main() {
     cout << "Enter height: ";
     cin >> height;
 
-    if (age >= 12 && height >= 5) {
-        cout << "You can ride the roller coaster" << endl;
-    } else {
+    if (age >= 12)
+    {
+        if (height >= 5)
+        {
+            cout << "You can ride the roller coaster" << endl;
+        }
+        else
+        {
+            cout << "You cannot ride the roller coaster" << endl;
+        }
+    }
+    else
+    {
         cout << "You cannot ride the roller coaster" << endl;
     }
 

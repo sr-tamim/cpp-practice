@@ -3,8 +3,15 @@
 #include <vector>
 using namespace std;
 
+/**
+ * Checks if there are any repeated elements in the given unordered map.
+ * 
+ * @param elementRepetitions The unordered map containing the elements and their repetitions.
+ * @return True if there are repeated elements, false otherwise.
+ */
 bool check_repetation(const unordered_map<int, int>& elementRepetitions) {
     // store all the values in another unordered map
+    // key = repetation of element, value = repetation of repetation
     unordered_map<int, int> repetitions;
     for (const auto& i : elementRepetitions) {
         // if repetation of any element is greater than 1 then return true
@@ -15,6 +22,14 @@ bool check_repetation(const unordered_map<int, int>& elementRepetitions) {
     return false;
 }
 
+/**
+ * The main function is the entry point of the program.
+ * It prompts the user to enter the size of an array and the elements of the array.
+ * It then checks if there are any repeated elements in the array using a hash map.
+ * Finally, it prints the array and the result of the repetition check.
+ *
+ * @return 0 indicating successful execution of the program.
+ */
 int main() {
     int size;
     cout << "Enter array size: ";

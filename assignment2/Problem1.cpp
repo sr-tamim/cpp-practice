@@ -28,26 +28,16 @@ public:
         title = title;
         author = author;
         ISBN = ISBN;
-        cout << " created." << endl;
+        cout << title << " created." << endl;
     }
 
     ~Book() {
-        cout << " destroyed." << endl;
+        cout << title << " destroyed." << endl;
     }
 };
 
 int main() {
-    cout << "Book 1";
-    Book* book1 = new Book("Introduction to OOP", "John Doe", "123456789");
-
-    cout << "Book 2";
-    Book* book2 = new Book("Data Structures and Algorithms", "Jane Smith", "987654321");
-
-    cout << "Book 1";
-    delete book1;
-
-    cout << "Book 2";
-    delete book2;
-
+    Book book1 = Book("Introduction to OOP", "John Doe", "123456789");
+    Book book2 = Book("Data Structures and Algorithms", "Jane Smith", "987654321");
     return 0;
 }

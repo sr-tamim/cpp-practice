@@ -130,6 +130,25 @@ int findMin(Stack<int> &intStack)
     return min;
 }
 
+// Additional function for sorting stack
+void sortStack(Stack<int> &intStack)
+{
+    Stack<int> tempStack;
+    while (!intStack.isEmpty())
+    {
+        int data = intStack.pop();
+        while (!tempStack.isEmpty() && tempStack.peek() > data)
+        {
+            intStack.push(tempStack.pop());
+        }
+        tempStack.push(data);
+    }
+    while (!tempStack.isEmpty())
+    {
+        intStack.push(tempStack.pop());
+    }
+}
+
 // functions to evaluate postfix expression
 bool isOperator(char ch)
 {
@@ -202,6 +221,17 @@ int main()
     cout << "Top element popped: " << intStack.pop() << endl;
     cout << "Current stack: " << intStack.peek() << endl;
     cout << "Minimum number in stack: " << findMin(intStack) << endl;
+
+    intStack.push(8);
+    intStack.push(2);
+    intStack.push(16);
+    sortStack(intStack);
+    cout << "Sorted stack: ";
+    while (!intStack.isEmpty())
+    {
+        cout << intStack.pop() << " ";
+    }
+    cout << endl;
 
     string str = "hello";
     string reversedStr = reverseString(str);

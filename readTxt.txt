@@ -1,0 +1,6 @@
+5
+Calculate 10 + 5
+Calculate 30 * 10
+Calculate 10 - 5
+Calculate 22 + 1
+Calculate 12 / 3

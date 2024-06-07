@@ -3,7 +3,7 @@
 using namespace std;
 
 void merge(int arr[], int left, int mid, int right);
-void mergeSort(int arr[], int left, int right);
+void mergeSort(int arr[], int n);
 int binarySearch(int arr[], int left, int right, int x);
 
 int main()
@@ -17,18 +17,7 @@ int main()
     for (int i = 0; i < n; i++)
         cin >> arr[i];
 
-    cout << endl;
-    cout << "Array: ";
-    for (int i = 0; i < n; i++)
-        cout << arr[i] << ", ";
-    cout << endl;
-
-    mergeSort(arr, 0, n - 1);
-
-    cout << "Sorted Array: ";
-    for (int i = 0; i < n; i++)
-        cout << arr[i] << ", ";
-    cout << endl;
+    mergeSort(arr, n);
 
     int x;
     cout << "Enter the number to search: ";
@@ -85,14 +74,16 @@ void merge(int arr[], int left, int mid, int right)
     }
 }
 
-void mergeSort(int arr[], int left, int right)
+void mergeSort(int arr[], int n)
 {
-    if (left < right)
+    for (int curr_size = 1; curr_size <= n - 1; curr_size = 2 * curr_size)
     {
-        int mid = left + (right - left) / 2;
-        mergeSort(arr, left, mid);
-        mergeSort(arr, mid + 1, right);
-        merge(arr, left, mid, right);
+        for (int left_start = 0; left_start < n - 1; left_start += 2 * curr_size)
+        {
+            int mid = min(left_start + curr_size - 1, n - 1);
+            int right_end = min(left_start + 2 * curr_size - 1, n - 1);
+            merge(arr, left_start, mid, right_end);
+        }
     }
 }
 
